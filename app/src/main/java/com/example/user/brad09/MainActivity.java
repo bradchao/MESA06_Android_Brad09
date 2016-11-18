@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private SimpleAdapter adapter;
     private LinkedList<HashMap<String,String>> data;    // 資料集
-    private String[] from = {"title"};
-    private int[] to = {R.id.item_tv};
+    private String[] from = {"title", "content", "img"};
+    private int[] to = {R.id.item_tv, R.id.item_content, R.id.item_img};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i=0; i<20; i++) {
             HashMap<String, String> row0 = new HashMap<>();   // 一筆資料
             row0.put(from[0], "PPAP:" + i);
+            row0.put(from[1], "apple:" + i);
             data.add(row0);
         }
 
