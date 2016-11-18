@@ -2,6 +2,9 @@ package com.example.user.brad09;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -27,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initListView(){
         data = new LinkedList<>();
-
         for (int i=0; i<20; i++) {
             HashMap<String, Object> row0 = new HashMap<>();   // 一筆資料
             row0.put(from[0], "PPAP:" + i);
@@ -35,13 +37,22 @@ public class MainActivity extends AppCompatActivity {
             row0.put(from[2], imgs[(int)(Math.random()*4)]);
             data.add(row0);
         }
-
-
-
-
-
         adapter = new SimpleAdapter(
                 this, data, R.layout.layout_item,from,to);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.v("brad", "Click: " + position);
+            }
+        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.v("brad", "Long: " + position);
+                return false;
+            }
+        });
+
     }
 }
